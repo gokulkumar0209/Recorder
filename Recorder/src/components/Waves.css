@@ -1,0 +1,43 @@
+.wave-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    bottom: -100px; /* Adjust this to move the waves up */
+    width: 100%;
+    height: auto;
+    animation: moveWavesY 2s ease-in-out infinite alternate;
+}
+
+.wave1 {
+    animation-duration: 2s;
+    opacity: 0.9;
+}
+
+.wave2 {
+    animation-duration: 2.5s;
+    opacity: 0.6;
+}
+
+.wave3 {
+    animation-duration: 1.8s;
+    opacity: 0.8;
+}
+
+.wave4 {
+    animation-duration: 2.2s;
+    opacity: 0.5;
+}
+
+@keyframes moveWavesY {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-120px); /* Adjust to control the wave height */
+    }
+}
