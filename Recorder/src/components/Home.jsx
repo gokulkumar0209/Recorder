@@ -83,16 +83,15 @@ function Home() {
 	}, [recordingBlob]);
 	return (
 		<div className="star-background outer-border flex justify-center items-center">
-			<h1 className="absolute top-28 text-center text-white z-10 font-reenie  font-medium text-[27px]">
-				<span className="inline-block transform  ">b</span>
-				<span className="inline-block transform rotate-[-15.16deg] ">a</span>
-				<span className="inline-block transform ">b</span>
-				<span className="inline-block transform rotate-[17.39deg] ">b</span>
-				<span className="inline-block transform rotate-[17.39deg] ">l</span>
-				<span className="inline-block transform rotate-[17.39deg] ">e</span>
-			</h1>
-
-			<div className="inner-border w-[1152px] h-[560px] flex justify-center items-center relative overflow-hidden">
+			<div className="inner-border w-[1152px] h-[560px] flex justify-center items-center relative">
+				<h1 className="absolute -top-16 text-center text-white font-reenie  font-medium text-[27px]">
+					<span className="inline-block transform  ">b</span>
+					<span className="inline-block transform rotate-[-15.16deg] ">a</span>
+					<span className="inline-block transform ">b</span>
+					<span className="inline-block transform rotate-[17.39deg] ">b</span>
+					<span className="inline-block transform rotate-[17.39deg] ">l</span>
+					<span className="inline-block transform rotate-[17.39deg] ">e</span>
+				</h1>
 				{!isRecordingStarted ? (
 					<button onClick={start}>
 						<div className="w-[202px] h-[202px] rounded-full border-[1px] border-[#FFB684] flex justify-center items-center bg-[#2F4858] shadow-md text-[#FFB684] font-semibold order-1">
@@ -100,13 +99,19 @@ function Home() {
 						</div>
 					</button>
 				) : count !== null ? (
-					<div className={clsx("relative w-[202px] h-[202px] order-2")}>
+					<div
+						className={clsx(
+							" w-[202px] h-[202px] order-2  justify-center",
+							count == "Resume" ? "absolute " : "relative"
+						)}
+					>
 						<button className="relative z-10" onClick={pause}>
 							<div
 								className={clsx(
-									"w-[202px] h-[202px] rounded-full flex justify-center items-center font-semibold bg-white",
-									count == "Resume" &&
-										"w-[150px] h-[150px] bg-[#FFB684] mt-8 ml-4"
+									"  rounded-full flex justify-center items-center font-semibold",
+									count == "Resume"
+										? "absolute w-[150px] h-[150px] bg-[#FFB684] left-64 top-0 bottom-0 mt-2"
+										: "bg-white w-[202px] h-[202px]"
 								)}
 							>
 								{count}
@@ -115,7 +120,7 @@ function Home() {
 						<div
 							className={clsx(
 								"z-10 absolute -bottom-20 left-0 right-0 p-2 text-center",
-								count == "Resume" && " -left-48"
+								count == "Resume" && " -left-48 "
 							)}
 						>
 							<button onClick={dlt} className=" p-2 rounded-full bg-white">
@@ -136,21 +141,25 @@ function Home() {
 				)}
 
 				{!isPaused && isRecording && (
-					<div className="absolute -bottom-6 left-0 w-full h-full z-0 overflow-hidden">
+					<div className="absolute -bottom-[409px]  left-0 w-full h-full bg-g z-0 ">
 						<Waves />
 					</div>
 				)}
+				{!isRecordingStarted && (
+					<div className=" absolute -bottom-[29px]  w-full flex justify-center items-center gap-4  ">
+						<img
+							className=" h-[58px] w-[58px] "
+							src="/images/home.png"
+							alt=""
+						/>
+						<img
+							className=" h-[58px] w-[58px] "
+							src="/images/recording.png"
+							alt=""
+						/>
+					</div>
+				)}
 			</div>
-			{!isRecordingStarted && (
-				<div className=" absolute bottom-[140px] w-full flex justify-center gap-4  ">
-					<img className=" h-[58px] w-[58px] " src="/images/home.png" alt="" />
-					<img
-						className=" h-[58px] w-[58px] "
-						src="/images/recording.png"
-						alt=""
-					/>
-				</div>
-			)}
 		</div>
 	);
 }
